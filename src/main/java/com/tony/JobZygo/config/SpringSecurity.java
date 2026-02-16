@@ -67,10 +67,13 @@ public class SpringSecurity {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Allow requests from your frontend
+        // Allow requests from your frontend (added Vercel pattern support)
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://192.168.1.37:3000"));
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "https://*.vercel.app",
+                "https://jobzygo-*.vercel.app"));
 
         // Allow all HTTP methods
         configuration.setAllowedMethods(Arrays.asList(
