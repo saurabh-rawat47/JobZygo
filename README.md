@@ -78,9 +78,16 @@ com.tony.JobZygo/
 - Username, email, password (hashed), and userType.
 - Database unique constraints on username and email.
 
-## 👨‍💻 Developer
+## 👨‍💻 Developer & AI Collaboration
+
 **Saurabh** - Java Backend Developer
-*Java Expertise with AI-Assisted Frontend Mastery*
+*Java Expertise with AI-Assisted Mastery*
+
+This project was built using a modern AI-collaborative workflow:
+- **Backend Architecture**: Designed and implemented by Saurabh.
+- **AI Collaboration**: Leveraged **Cursor AI** and **Antigravity** for rapid frontend development, logic optimization, and UI styling.
+- **Result**: A high-performance, secure, and visually stunning web application delivered through the synergy of human expertise and advanced AI tools.
+
 
 ---
 
