@@ -80,13 +80,14 @@ com.tony.JobZygo/
 
 ## 👨‍💻 Developer & AI Collaboration
 
-**Saurabh** - Java Backend Developer
-*Java Expertise with AI-Assisted Mastery*
+**Saurabh** - Building Full-Stack Development Skills
+*Developing Java Expertise with AI-Assisted Workflows*
 
-This project was built using a modern AI-collaborative workflow:
-- **Backend Architecture**: Designed and implemented by Saurabh.
-- **AI Collaboration**: Leveraged **Cursor AI** and **Antigravity** for rapid frontend development, logic optimization, and UI styling.
-- **Result**: A high-performance, secure, and visually stunning web application delivered through the synergy of human expertise and advanced AI tools.
+This project was built using a modern AI-collaborative learning approach:
+- **Backend Core**: Implemented by Saurabh while exploring Spring Boot and MongoDB patterns.
+- **AI Collaboration**: Leveraged **Cursor AI** and **Antigravity** to accelerate frontend development, UI styling, and security logic optimization.
+- **Result**: A high-performance, secure web application that demonstrates the power of combining emerging developer skills with advanced AI tools.
+
 
 
 ---
