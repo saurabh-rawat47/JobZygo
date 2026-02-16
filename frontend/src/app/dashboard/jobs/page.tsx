@@ -39,7 +39,7 @@ export default function JobsPage() {
 
   const handleSearch = async (searchText: string) => {
     setSearchTerm(searchText);
-    
+
     if (!searchText.trim()) {
       setFilteredJobs(jobs);
       return;
@@ -80,79 +80,93 @@ export default function JobsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Job Opportunities</h1>
-          <p className="text-gray-600 mt-2">
-            Discover {filteredJobs.length} amazing opportunities
+          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Job Opportunities
+          </h1>
+          <p className="text-slate-500 mt-2 font-medium">
+            Explore <span className="text-blue-600 font-bold">{filteredJobs.length}</span> high-quality positions tailored for you.
           </p>
         </div>
         {user?.userType === 'employer' && (
           <Button
             onClick={() => window.location.href = '/dashboard/create-job'}
-            className="flex items-center"
+            className="shadow-lg shadow-blue-100"
+            size="lg"
           >
-            <Plus className="w-4 h-4 mr-2" />
-            Post Job
+            <Plus className="w-5 h-5 mr-2" />
+            Post New Job
           </Button>
         )}
       </div>
 
-      {/* Search */}
-      <JobSearch
-        onSearch={handleSearch}
-        onClear={handleClearSearch}
-        isLoading={false}
-      />
+      {/* Search Section */}
+      <section>
+        <JobSearch
+          onSearch={handleSearch}
+          onClear={handleClearSearch}
+          isLoading={false}
+        />
+      </section>
 
-      {/* Results */}
-      <div className="bg-white rounded-lg shadow-sm p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">
-            {searchTerm ? `Search Results for "${searchTerm}"` : 'All Jobs'}
-          </h2>
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Filter className="w-4 h-4" />
-            <span>{filteredJobs.length} jobs found</span>
+      {/* Results Section */}
+      <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+        <div className="px-8 py-6 border-b border-slate-50 flex justify-between items-center bg-slate-50/30">
+          <div className="flex items-center space-x-3">
+            <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+              <Filter className="w-5 h-5" />
+            </div>
+            <h2 className="text-xl font-bold text-slate-900">
+              {searchTerm ? `Results for "${searchTerm}"` : 'Active Listings'}
+            </h2>
           </div>
+          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest bg-white px-3 py-1.5 rounded-full border border-slate-100 shadow-sm">
+            {filteredJobs.length} Positions
+          </span>
         </div>
 
-        {filteredJobs.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobs.map((job, index) => (
-              <JobCard
-                key={job.id || `job-${index}`}
-                job={job}
-                onApply={user?.userType === 'jobseeker' ? handleApplyJob : undefined}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Filter className="w-8 h-8 text-gray-400" />
+        <div className="p-8">
+          {filteredJobs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredJobs.map((job, index) => (
+                <JobCard
+                  key={job.id || `job-${index}`}
+                  job={job}
+                  onApply={user?.userType === 'jobseeker' ? handleApplyJob : undefined}
+                />
+              ))}
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No jobs found</h3>
-            <p className="text-gray-600 mb-4">
-              {searchTerm 
-                ? `No jobs match your search for "${searchTerm}". Try different keywords.`
-                : 'No jobs are currently available.'
-              }
-            </p>
-            {searchTerm && (
-              <Button
-                onClick={handleClearSearch}
-                variant="outline"
-              >
-                Clear Search
-              </Button>
-            )}
-          </div>
-        )}
+          ) : (
+            <div className="text-center py-20 bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-200">
+              <div className="w-20 h-20 bg-white rounded-full shadow-sm flex items-center justify-center mx-auto mb-6">
+                <Filter className="w-10 h-10 text-slate-300" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2">No matching jobs found</h3>
+              <p className="text-slate-500 mb-8 max-w-sm mx-auto">
+                {searchTerm
+                  ? `We couldn't find any positions matching "${searchTerm}". Try adjusting your keywords.`
+                  : 'Check back later! No jobs are currently available in the system.'
+                }
+              </p>
+              {searchTerm && (
+                <Button
+                  onClick={handleClearSearch}
+                  variant="outline"
+                  size="lg"
+                  className="rounded-xl border-slate-200"
+                >
+                  Clear all filters
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
+
   );
 }
 

@@ -34,7 +34,7 @@ api.interceptors.response.use(
 export const authAPI = {
   signup: async (userData: User): Promise<AuthResponse> => {
     try {
-      const response = await api.post('/signup', userData);
+      const response = await api.post('/api/auth/signup', userData);
       return response.data;
     } catch (error: any) {
       console.error('Signup error:', error);
@@ -44,7 +44,7 @@ export const authAPI = {
 
   login: async (userData: { username: string; password: string }): Promise<AuthResponse> => {
     try {
-      const response = await api.post('/login', userData);
+      const response = await api.post('/api/auth/login', userData);
       const token = response.headers.authorization;
       if (token && typeof window !== 'undefined') {
         localStorage.setItem('token', token.replace('Bearer ', ''));
@@ -68,7 +68,7 @@ export const authAPI = {
 export const jobsAPI = {
   getAllJobs: async (): Promise<JobPost[]> => {
     try {
-      const response = await api.get('/jobzygo/jobs');
+      const response = await api.get('/api/jobs');
       return response.data;
     } catch (error: any) {
       console.error('Get jobs error:', error);
@@ -78,7 +78,7 @@ export const jobsAPI = {
 
   searchJobs: async (searchText: string): Promise<JobPost[]> => {
     try {
-      const response = await api.get(`/jobzygo/jobs/search/${encodeURIComponent(searchText)}`);
+      const response = await api.get(`/api/jobs/search/${encodeURIComponent(searchText)}`);
       return response.data;
     } catch (error: any) {
       console.error('Search jobs error:', error);
@@ -88,7 +88,7 @@ export const jobsAPI = {
 
   createJob: async (jobData: JobPost): Promise<JobPost> => {
     try {
-      const response = await api.post('/jobzygo/jobs', jobData);
+      const response = await api.post('/api/jobs', jobData);
       return response.data;
     } catch (error: any) {
       console.error('Create job error:', error);

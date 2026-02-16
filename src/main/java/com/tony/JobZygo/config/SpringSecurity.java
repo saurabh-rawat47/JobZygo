@@ -40,24 +40,23 @@ public class SpringSecurity {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // Enable CORS
                 .authorizeHttpRequests(request -> request
                         // Allow unauthenticated access to job browsing
-                        .requestMatchers(HttpMethod.GET, "/jobzygo/jobs").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/jobzygo/jobs/search/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/jobs").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/jobs/search/**").permitAll()
 
                         // Allow unauthenticated access to authentication endpoints
-                        .requestMatchers(HttpMethod.POST, "/signup").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
                         // Allow unauthenticated access to OAuth endpoints (if you implement them)
                         .requestMatchers(HttpMethod.POST, "/oauth/**").permitAll()
 
                         // Require authentication for job posting and other sensitive operations
-                        .requestMatchers(HttpMethod.POST, "/jobzygo/jobs").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/jobs").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/jobzygo/jobs/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/jobzygo/jobs/**").authenticated()
 
                         // Allow all other requests (you can make this more restrictive if needed)
-                        .anyRequest().permitAll()
-                )
+                        .anyRequest().permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -71,13 +70,11 @@ public class SpringSecurity {
         // Allow requests from your frontend
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
-                "http://192.168.1.37:3000"
-        ));
+                "http://192.168.1.37:3000"));
 
         // Allow all HTTP methods
         configuration.setAllowedMethods(Arrays.asList(
-                "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"
-        ));
+                "GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
 
         // Allow all headers
         configuration.setAllowedHeaders(Arrays.asList("*"));
