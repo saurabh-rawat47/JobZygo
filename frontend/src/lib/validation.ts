@@ -6,8 +6,8 @@ export const signupSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters')
     .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, 'Password must contain at least one uppercase letter, one lowercase letter, and one number'),
   confirmPassword: z.string(),
-  userType: z.enum(['jobseeker', 'employer'], {
-    required_error: 'Please select a user type',
+  userType: z.string().refine((val) => ['jobseeker', 'employer'].includes(val), {
+    message: 'Please select a user type',
   }),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords don't match",

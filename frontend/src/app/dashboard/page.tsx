@@ -34,7 +34,7 @@ export default function Dashboard() {
     fetchRecentJobs();
   }, []);
 
-  const handleApplyJob = (_jobId: string) => {
+  const handleApplyJob = (_jobId: string) => { // eslint-disable-line @typescript-eslint/no-unused-vars
     // TODO: Implement job application logic
     alert('Application feature coming soon!');
   };

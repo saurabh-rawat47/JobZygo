@@ -62,7 +62,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
     setError('');
 
     try {
-      const { confirmPassword: _confirmPassword, ...signupData } = data;
+      const { confirmPassword: _, ...signupData } = data; // eslint-disable-line @typescript-eslint/no-unused-vars
       const response = await authAPI.signup(signupData);
       
       if (response.success) {
