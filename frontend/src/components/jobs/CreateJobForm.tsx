@@ -62,7 +62,7 @@ export default function CreateJobForm({ onSuccess, onCancel }: CreateJobFormProp
     try {
       await jobsAPI.createJob(data);
       onSuccess();
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       setError(err.response?.data?.message || 'Failed to create job post. Please try again.');
     } finally {
       setIsLoading(false);

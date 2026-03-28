@@ -8,7 +8,7 @@ import { authAPI } from '@/lib/api';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import Select from '@/components/ui/Select';
-import { Eye, EyeOff, Mail, Lock, User, CheckCircle, XCircle } from 'lucide-react';
+import { Eye, EyeOff, CheckCircle, XCircle } from 'lucide-react';
 
 interface SignupFormProps {
   onSuccess: () => void;
@@ -62,7 +62,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
     setError('');
 
     try {
-      const { confirmPassword, ...signupData } = data;
+      const { confirmPassword: _confirmPassword, ...signupData } = data;
       const response = await authAPI.signup(signupData);
       
       if (response.success) {
@@ -73,7 +73,7 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       } else {
         setError(response.message);
       }
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       setError(err.response?.data?.message || 'Signup failed. Please try again.');
     } finally {
       setIsLoading(false);

@@ -50,7 +50,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignup }: LoginFormProp
       } else {
         setError(response.message);
       }
-    } catch (err: any) {
+    } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
       setError(err.response?.data?.message || 'Login failed. Please try again.');
     } finally {
       setIsLoading(false);
@@ -114,7 +114,7 @@ export default function LoginForm({ onSuccess, onSwitchToSignup }: LoginFormProp
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <button
               type="button"
               onClick={onSwitchToSignup}

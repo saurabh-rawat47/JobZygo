@@ -34,7 +34,7 @@ export default function Dashboard() {
     fetchRecentJobs();
   }, []);
 
-  const handleApplyJob = (jobId: string) => {
+  const handleApplyJob = (_jobId: string) => {
     // TODO: Implement job application logic
     alert('Application feature coming soon!');
   };

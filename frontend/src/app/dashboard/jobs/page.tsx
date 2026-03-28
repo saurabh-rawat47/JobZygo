@@ -66,7 +66,7 @@ export default function JobsPage() {
     setFilteredJobs(jobs);
   };
 
-  const handleApplyJob = (jobId: string) => {
+  const handleApplyJob = (_jobId: string) => {
     // TODO: Implement job application logic
     alert('Application feature coming soon!');
   };

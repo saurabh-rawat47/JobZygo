@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Briefcase, Clock, CheckCircle, XCircle, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Briefcase, Clock, CheckCircle, AlertCircle, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { User } from '@/types';
 import Button from '@/components/ui/Button';
@@ -120,7 +120,7 @@ export default function ApplicationsPage() {
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-2">No applications found</h3>
               <p className="text-slate-500 mb-8 max-w-sm mx-auto">
-                You haven't applied to any jobs yet. Start exploring opportunities to see your applications here!
+                You haven&apos;t applied to any jobs yet. Start exploring opportunities to see your applications here!
               </p>
               <Button onClick={() => router.push('/dashboard/jobs')}>
                 Go to Jobs

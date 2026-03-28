@@ -1,5 +1,5 @@
 import { JobPost } from '@/types';
-import { MapPin, Building, Clock, DollarSign, Briefcase } from 'lucide-react';
+import { MapPin, Building, Clock, Briefcase } from 'lucide-react';
 
 interface JobCardProps {
   job: JobPost;

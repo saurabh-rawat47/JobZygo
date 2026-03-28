@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { User as UserIcon, Mail, Briefcase, Calendar, Shield, ArrowLeft } from 'lucide-react';
+import { User as UserIcon, Mail, Calendar, Shield, ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { User } from '@/types';
 import Button from '@/components/ui/Button';
