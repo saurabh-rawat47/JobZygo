@@ -20,6 +20,7 @@ export default function Home() {
       if (savedUser) {
         try {
           setUser(JSON.parse(savedUser));
+          router.push('/dashboard');
         } catch (error) {
           console.error('Error parsing user data:', error);
           localStorage.removeItem('user');

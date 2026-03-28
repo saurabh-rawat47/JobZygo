@@ -116,20 +116,20 @@ public class UserController {
                 // Set JWT token in response header
                 response.setHeader("Authorization", "Bearer " + token);
 
-                // Also get user details for response
+                // Get user details (avoiding redundant findByUsername)
                 User loggedInUser = userService.findByUsername(user.getUsername());
-                loggedInUser.setPassword(null); // Don't return password
-
-                responseBody.put("success", true);
-                responseBody.put("message", "Login successful");
-                responseBody.put("user", loggedInUser);
-
-                return new ResponseEntity<>(responseBody, HttpStatus.OK);
-            } else {
-                responseBody.put("success", false);
-                responseBody.put("message", "Invalid username or password");
-                return new ResponseEntity<>(responseBody, HttpStatus.UNAUTHORIZED);
+                if (loggedInUser != null) {
+                    loggedInUser.setPassword(null);
+                    responseBody.put("success", true);
+                    responseBody.put("message", "Login successful");
+                    responseBody.put("user", loggedInUser);
+                    return new ResponseEntity<>(responseBody, HttpStatus.OK);
+                }
             }
+            
+            responseBody.put("success", false);
+            responseBody.put("message", "Invalid username or password");
+            return new ResponseEntity<>(responseBody, HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
             System.err.println("Login error: " + e.getMessage());
             e.printStackTrace();

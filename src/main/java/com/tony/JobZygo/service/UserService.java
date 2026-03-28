@@ -21,7 +21,7 @@ public class UserService {
     @Autowired
     private JWTService jwtService;
 
-    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(10);
 
     public User signup(User user) {
         try {
