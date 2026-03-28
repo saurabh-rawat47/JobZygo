@@ -47,10 +47,8 @@ public class SpringSecurity {
                         .requestMatchers(HttpMethod.POST, "/api/auth/signup").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").permitAll()
 
-                        // Allow unauthenticated access to OAuth endpoints (if you implement them)
-                        .requestMatchers(HttpMethod.POST, "/oauth/**").permitAll()
-
                         // Require authentication for job posting and other sensitive operations
+
                         .requestMatchers(HttpMethod.POST, "/api/jobs").authenticated()
                         .requestMatchers(HttpMethod.PUT, "/jobzygo/jobs/**").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/jobzygo/jobs/**").authenticated()

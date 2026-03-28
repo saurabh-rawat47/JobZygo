@@ -69,7 +69,7 @@ export default function JobCard({ job, onApply }: JobCardProps) {
         <div className="mb-6">
           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Technologies</h4>
           <div className="flex flex-wrap gap-2">
-            {job.techs.map((tech, index) => (
+            {(job.techs || []).map((tech, index) => (
               <span
                 key={`${job.id}-tech-${tech}-${index}`}
                 className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-50 text-slate-700 border border-slate-100 hover:bg-white hover:shadow-sm transition-all"

@@ -55,24 +55,8 @@ public class UserService {
         }
     }
 
-    // Special signup method for OAuth users
-    public User signupOAuth(User user) {
-        try {
-            // For OAuth users, we don't encode the password since they don't have one
-            System.out.println("Saving OAuth user to database: " + user.getUsername());
-            User savedUser = userRepo.save(user);
-            System.out.println("OAuth user saved successfully with ID: " + savedUser.getId());
-
-            return savedUser;
-
-        } catch (Exception e) {
-            System.err.println("Error saving OAuth user: " + e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Failed to create OAuth user: " + e.getMessage());
-        }
-    }
-
     public String verify(User user) {
+
         try {
             Authentication authentication = auth.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())

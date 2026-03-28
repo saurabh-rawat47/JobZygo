@@ -66,6 +66,9 @@ export default function SignupForm({ onSuccess, onSwitchToLogin }: SignupFormPro
       const response = await authAPI.signup(signupData);
       
       if (response.success) {
+        if (typeof window !== 'undefined' && response.user) {
+          localStorage.setItem('user', JSON.stringify(response.user));
+        }
         onSuccess();
       } else {
         setError(response.message);

@@ -35,6 +35,10 @@ export const authAPI = {
   signup: async (userData: User): Promise<AuthResponse> => {
     try {
       const response = await api.post('/api/auth/signup', userData);
+      const token = response.headers.authorization;
+      if (token && typeof window !== 'undefined') {
+        localStorage.setItem('token', token.replace('Bearer ', ''));
+      }
       return response.data;
     } catch (error: any) {
       console.error('Signup error:', error);

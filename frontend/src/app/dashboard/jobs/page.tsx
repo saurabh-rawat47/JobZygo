@@ -55,7 +55,7 @@ export default function JobsPage() {
         job.profile.toLowerCase().includes(searchText.toLowerCase()) ||
         job.companyName.toLowerCase().includes(searchText.toLowerCase()) ||
         job.location.toLowerCase().includes(searchText.toLowerCase()) ||
-        job.techs.some(tech => tech.toLowerCase().includes(searchText.toLowerCase()))
+        (job.techs || []).some(tech => tech.toLowerCase().includes(searchText.toLowerCase()))
       );
       setFilteredJobs(filtered);
     }

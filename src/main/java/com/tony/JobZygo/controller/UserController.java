@@ -13,14 +13,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     @Autowired
     UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Map<String, Object>> signup(@RequestBody User user) {
+    public ResponseEntity<Map<String, Object>> signup(@RequestBody User user, HttpServletResponse httpResponse) {
         System.out.println("=== SIGNUP REQUEST RECEIVED ===");
         System.out.println("Request received at: " + new java.util.Date());
         System.out.println("User object: " + user);
@@ -47,6 +46,9 @@ public class UserController {
                 return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
             }
 
+            // Store the plain password temporarily for verification after signup
+            String plainPassword = user.getPassword();
+
             // Trim whitespace
             user.setUsername(user.getUsername().trim());
             user.setEmail(user.getEmail().trim());
@@ -54,6 +56,17 @@ public class UserController {
             System.out.println("Attempting to create user: " + user.getUsername() + " with email: " + user.getEmail());
 
             User savedUser = userService.signup(user);
+
+            // After successful signup, automatically verify (login) the user
+            User loginUser = new User();
+            loginUser.setUsername(savedUser.getUsername());
+            loginUser.setPassword(plainPassword);
+            String token = userService.verify(loginUser);
+
+            if (!"Fail".equals(token)) {
+                // Set JWT token in response header
+                httpResponse.setHeader("Authorization", "Bearer " + token);
+            }
 
             // Don't return password
             savedUser.setPassword(null);

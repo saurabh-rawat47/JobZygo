@@ -1,96 +1,70 @@
-# JobZygo - Job Portal Platform
+# JobZygo - Full-Stack Job Portal Platform
 
-JobZygo is a modern full-stack job portal application that connects job seekers with employers. Built with a robust Spring Boot backend and a premium Next.js frontend, it demonstrates enterprise-level web application development with modern technologies and clean architecture.
+JobZygo is a modern, premium job portal that connects job seekers with employers. Built with a robust Spring Boot backend and a high-performance Next.js frontend, it demonstrates modern web development best practices.
 
-## 🚀 Project Overview
+## 🏗️ Architecture Summary
 
-A comprehensive job portal platform featuring secure user authentication, job management, and AI-assisted search capabilities. The application showcases full-stack development skills with industry-standard technologies and architectural patterns.
-
-## ✨ Key Features
-
-- **🎨 Premium UI/UX**: Modern, high-contrast interface built with Next.js 15 and Tailwind CSS v4, featuring "glassmorphism" and smooth animations.
-- **🔐 Secure Authentication**: JWT-based stateless authentication system with robust error handling and token validation.
-- **📋 Job Management**: Complete CRUD operations for job postings with a refined data model.
-- **🔍 Job Search**: Dynamic job search with filters for location, skills, and experience level.
-- **👥 User Roles**: Dual-role system supporting both Job Seekers and Employers.
-- **🛡️ Security**: BCrypt password encryption, protected API routes, and comprehensive CORS configuration.
-
-## 🏗️ Architecture & Technologies
-
-### Backend (Java/Spring Boot)
-- **Framework**: Spring Boot 3.3.0+
-- **Database**: MongoDB (Atlas) with Spring Data MongoDB
-- **Security**: Spring Security 6 with custom JWT Filter
-- **Reliability**: String-based ID mapping for seamless JSON serialization
-- **Architecture**: Layered design (Controller → Service → Repository)
-
-### Frontend (Next.js/React)
-- **Framework**: Next.js 15.4.6 (App Router) with TypeScript
-- **Styling**: Tailwind CSS v4 for ultra-modern visuals
-- **UI Components**: Custom reusable components with Lucide React icons
-- **State/Data**: Axios for API communication and React Hooks for state management
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Java 17 or higher
-- Node.js 18 or higher
-- MongoDB Atlas account (or local MongoDB instance)
-
-### Quick Run Scripts
-For ease of development, use the following interactive scripts:
-
-1. **Backend**: Run `run.bat` in the root directory.
-   - *Note: Ensure your `MONGODB_URI` environment variable is set.*
-2. **Frontend**: Run `run-frontend.bat` in the root directory.
-   - *Access at: [http://localhost:3000](http://localhost:3000)*
+- **Frontend**: Next.js 15 (App Router, TypeScript, Tailwind CSS v4)
+- **Backend**: Spring Boot 3.3.0+ (Java 17, Spring Security, JWT)
+- **Database**: MongoDB Atlas
 
 ---
 
-### Backend Architecture
-```
-com.tony.JobZygo/
-├── controller/     # REST API endpoints (/api)
-├── service/        # Business logic layer
-├── repo/           # Data access (PostRepo, UserRepo)
-├── entity/         # Data models (JobPost, User)
-├── config/         # Security & CORS configuration
-└── filter/         # JWT authentication logic
-```
+## 🚀 Deployment Guide
 
-### API Endpoints (Primary)
-- **Auth**: `POST /api/auth/login`, `POST /api/auth/signup`
-- **Jobs**: `GET /api/jobs`, `POST /api/jobs`
-- **Search**: `GET /api/jobs/search/{text}`
+### 1. Database (MongoDB Atlas)
+1. Log in to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+2. Create a Free Cluster.
+3. In **Network Access**, allow access from anywhere (`0.0.0.0/0`) for the initial deployment.
+4. Create a database user and copy your **Connection String (URI)**.
 
-## 🛡️ Security Implementation
-- Stateless JWT-based authentication.
-- Invalid/Expired token handling to ensure high availability.
-- CORS configured for `http://localhost:3000` to allow secure frontend interaction.
-- Exposed `Authorization` headers for frontend token management.
+### 2. Backend Deployment (e.g., [Render](https://render.com) or [Railway](https://railway.app))
+1. Connect your GitHub repository.
+2. Set the root directory to project root or use the detected Java environment.
+3. **Environment Variables**:
+   - `MONGODB_URI`: (Your Atlas URI)
+   - `APP_CORS_ORIGINS`: (Your production frontend URL, e.g., `https://jobzygo.vercel.app`)
+4. Build Command: `./mvnw clean package -DskipTests`
+5. Start Command: `java -jar target/*.jar`
 
-## 📊 Data Models
-**JobPost**:
-- Profile, job type, companyName, experience, salary, location, description, and required techs list.
-- Uses `@Id` with `String` type for optimal compatibility with frontend keys.
-
-**User**:
-- Username, email, password (hashed), and userType.
-- Database unique constraints on username and email.
-
-## 👨‍💻 Developer & AI Collaboration
-
-**Saurabh** - Building Full-Stack Development Skills
-*Developing Java Expertise with AI-Assisted Workflows*
-
-This project was built using a modern AI-collaborative learning approach:
-- **Backend Core**: Implemented by Saurabh while exploring Spring Boot and MongoDB patterns.
-- **AI Collaboration**: Leveraged **Cursor AI** and **Antigravity** to accelerate frontend development, UI styling, and security logic optimization.
-- **Result**: A high-performance, secure web application that demonstrates the power of combining emerging developer skills with advanced AI tools.
-
-
+### 3. Frontend Deployment ([Vercel](https://vercel.com))
+1. Import your project to Vercel.
+2. Choose **Next.js** as the framework.
+3. Set the **Root Directory** to `frontend`.
+4. **Environment Variables**:
+   - `NEXT_PUBLIC_API_URL`: (Your production backend URL, e.g., `https://jobzygo-api.onrender.com`)
+5. Click **Deploy**.
 
 ---
 
-*This project demonstrates a professional blend of Java backend expertise and modern frontend development tools, delivering a high-performance, secure, and visually stunning web application.*
+## 🛠️ Local Development
 
+### Requirements
+- Java 17+
+- Node.js 18+
+- MongoDB URI
+
+### Steps
+1. **Clone the Repo**: `git clone <your-repo-url>`
+2. **Backend**:
+   - Set environment variable: `MONGODB_URI`
+   - Run `run.bat` or `./mvnw spring-boot:run`
+3. **Frontend**:
+   - Go to `frontend/`
+   - Run `npm install`
+   - Run `npm run dev` (Access at `localhost:3000`)
+
+---
+
+## ✨ Features Implemented
+- **AI-Assisted Search**: Smart search with Atlas Search and a robust Regex fallback for reliability.
+- **Auto-Login**: Seamless transition from signup to dashboard.
+- **Premium Dashboards**: Dedicated "Profile" and "Applications" tracking pages.
+- **Secure Auth**: JWT-based authentication with protected API routes.
+- **Enterprise Design**: High-contrast, accessibility-first UI with modern animations.
+
+---
+
+## 👨‍💻 Author
+**Saurabh** - *Building Full-Stack Excellence*
+AI Collaboration partner: Antigravity AI
